@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% widget_tweaks %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+
+        form{
+            margin: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+{% include "staff/staffnav.html" %}
+
+
+<br><br><br>
+<h3>Staff Signup</h3>
+<form method="post" enctype="multipart/form">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="username">username</label>
+            {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="Username" %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="Password" %}
+        </div>
+
+    </div>
+
+</form>
+
+
+
+
+</body>

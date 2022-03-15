@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.db.models import Q
 from django.contrib.auth.models import User
 from staff import models as CMODEL
 from staff import forms as CFORM
@@ -32,7 +33,13 @@ def adminclick_view(request):
 @login_required(login_url='adminlogin')
 def admin_dashboard_view(request):
     dict= {
-        'staff':model.staff.objects.get(user=request.user)
+        'total_vehicles':models.Vehicle.objects.all().count(),
+        'total_vehicle_holders':CMODEL.VehicleRecord.objects.all().count(),
+        'total_staff':CMODEL.Staff.objects.all().count(),
+        'approved_vehicle_holders':models.VehicleRecord.objects.all().filter(status='Approved').count(),
+        'disapproved_vehicle_holders':models.VehicleRecord.objects.all().filter(status='Disapproved').count(),
+        'pending_vehicle_holders':models.VehicleRecord.objects.all().filter(status='Pending').count(),
+
     }
     return render(request, 'vehicle/admin_dashboard.html', context=dict)
 
@@ -119,7 +126,7 @@ def admin_view_approved_vehicle_holder(request):
     vehiclerecords=models.VehicleRecord.objects.all().filter(status='Approved')
     return render(request, 'vehicle/admin_view_approved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
 
-def admin_view_diaspproved_vehicle_holder(request):
+def admin_view_diasspproved_vehicle_holder(request):
     vehiclerecords=models.VehicleRecord.objects.all().filter(status='Disapproved')
     return render(request, 'vehicle/admin_view_disapproved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
 

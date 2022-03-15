@@ -5,18 +5,20 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.contrib.auth.models import User
+from staff import models as CMODEL
+from staff import forms as CFORM
 
 # Create your views here.
 
 def home_view(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     return render(request, 'vehicle/index.html')
 
 def is_staff(user):
     return user.groups.filter(name='STAFF').exists()
 
-def afterlogin(request):
+def afterlogin_view(request):
     if is_staff(request.user):
         return redirect('staff/staffdashboard')
     else:
@@ -78,3 +80,62 @@ def admin_add_vehicle_view(request):
             vehicle.save()
             return redirect ('admin-view-vehicles')
     return render(request, 'vehicle/admin_add_vehicle.html', {'vehicleForm':vehicleForm})
+
+def admin_view_vehicles_view(request):
+    vehicles=models.Vehicle.objects.all()
+    return render(request, 'vehicle/admin_view_vehicles.html', {'vehicles':vehicles})
+
+def admin_update_vehicle_view(request):
+    vehicles=models.Vehicle.objects.all()
+    return render(request, 'vehicle/admin_update_vehicle.html', {'vehicles':vehicles})
+
+@login_required(login_url='adminlogin')
+def update_vehicle_view(request):
+    vehicles=models.Vehicle.objects.get(id=pk)
+    vehicleForm=forms.VehicleForm(instance=vehicle)
+
+    if request.method=='POST':
+        vehicleForm=forms.VehicleForm(request.POST, instance=vehicle)
+        if vehicleForm.is_valid():
+            vehicle=vehicleForm.save()
+            vehicle.save()
+            return redirect ('admin-view-vehicles')
+    return render(request, 'vehicle/admin_update_vehicle.html', {'vehicles':vehicles})
+
+def admin_delete_view(request):
+    vehicles =models.Vehicle.objects.all()
+    return render(request, 'vehicle/admin_delete_vehicle.html', {'vehicles':vehicles})
+
+def delete_vehicle_view(request, pk):
+    vehicle=models.Vehicle.objects.get(id=pk)
+    vehicle.delete()
+    return redirect('admin-view-vehicles')
+
+def admin_view_vehicle_holder_view(request):
+    vehiclerecords=models.VehicleRecord.objects.all()
+    return render(request, 'vehicle/admin_view_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+
+def admin_view_approved_vehicle_holder(request):
+    vehiclerecords=models.VehicleRecord.objects.all().filter(status='Approved')
+    return render(request, 'vehicle/admin_view_approved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+
+def admin_view_diaspproved_vehicle_holder(request):
+    vehiclerecords=models.VehicleRecord.objects.all().filter(status='Disapproved')
+    return render(request, 'vehicle/admin_view_disapproved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+
+def admin_view_waiting_vehicle_holder(request):
+    vehiclerecords=models.VehicleRecord.objects.all().filter(status='Pending')
+    return render(request, 'vehicle/admin_view_waiting_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+
+def approve_request_view(request, pk):
+    vehiclerecords = models.VehicleRecord.objects.get(id=pk)
+    vehiclerecords.status='Approved'
+    vehiclerecords.save()
+    return redirect('admin-view-vehicle-holder')
+
+def disapprove_request_view(request, pk):
+    vehiclerecords = models.VehicleRecord.objects.get(id=pk)
+    vehiclerecords.status='Disapproved'
+    vehiclerecords.save()
+    return redirect('admin-view-vehicle-holder')
+

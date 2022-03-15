@@ -1,13 +1,13 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import User
 from . import models
 
 
 class StaffUserForm(forms.ModelForm):
     class Meta:
-        model = user
+        model = User
         fields= ['first_name', 'last_name', 'username', 'password']
-         widgets = {
+        widgets = {
         'password': forms.PasswordInput()
         }
 

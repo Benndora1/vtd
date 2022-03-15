@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% widget_tweaks %}
+{% load widget_tweaks %}
 
 <html lang="en">
 
@@ -16,7 +16,6 @@
 </head>
 
 <body>
-{% include "staff/staffnav.html" %}
 
 
 <br><br><br>
@@ -28,13 +27,32 @@
             <label for="username">username</label>
             {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="Username" %}
         </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="Password" %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="first_name">First Name</label>
+                {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="First Name" %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="last_name">Last Name</label>
+                {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" %}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="address">Address</label>
+                  {% render_field staffForm.address|attr:'required:true'  class="form-control" placeholder="Address" %}
+                </div>
+
+            </div>
+
         </div>
-
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="mobile">Contact</label>
+                {% render_field staffForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact"%}
+            </div>
+        </div>
     </div>
-
+ <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 

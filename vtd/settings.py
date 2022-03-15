@@ -1,7 +1,8 @@
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
 
 SECRET_KEY = 'django-insecure-o2-6$1ohu3h(o*wj#o&sn@=47ed4#hy45r=_i=0fkvan80q!=)'
@@ -38,9 +39,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'vtd.urls'
 
 TEMPLATES = [
+
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,6 +114,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS=[
-STATIC_DIR,
- ]
+# STATICFILES_DIRS=[
+# STATIC_DIR,
+#  ]

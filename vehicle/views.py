@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from datetime import date, timedelta
 from django.db.models import Q
 from django.contrib.auth.models import User
 from staff import models as CMODEL
@@ -34,7 +35,7 @@ def adminclick_view(request):
 def admin_dashboard_view(request):
     dict= {
         'total_vehicles':models.Vehicle.objects.all().count(),
-        'total_vehicle_holders':CMODEL.VehicleRecord.objects.all().count(),
+        'total_vehicle_holders':models.VehicleRecord.objects.all().count(),
         'total_staff':CMODEL.Staff.objects.all().count(),
         'approved_vehicle_holders':models.VehicleRecord.objects.all().filter(status='Approved').count(),
         'disapproved_vehicle_holders':models.VehicleRecord.objects.all().filter(status='Disapproved').count(),

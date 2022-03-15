@@ -1,8 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from . import forms, models
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+
+def staffclick_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('afterlogin')
+    return render(request, 'staff/staffclick.html')
+
 
 def staffsignup_view(request):
     userForm=forms.StaffUserForm()
@@ -32,3 +39,8 @@ def staff_dashboard_view(request):
     }
  
     return render(request, 'staff/dashboard.html', context=dict)
+
+def request_vehicle_view(request):
+    staff = models.Staff.objects.get(user_id=request.user.id)
+    vehicles = CMODEL.vehicles.objects.all()
+    return render(request, 'staff/request_vehicle.html', {'staff': staff, 'vehicles': vehicles})

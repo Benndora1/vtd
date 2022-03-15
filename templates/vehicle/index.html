@@ -1,3 +1,52 @@
 <!DOCTYPE html>
 
 {% load static %}
+
+<html lang="en" dir="ltr">
+
+<style>
+     .xyz{
+        margin-bottom: 0px;
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+   }
+</style>
+
+<body>
+    {% include "vehicle/navbar.html" %}
+
+<br>
+
+<section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center ">
+    <div class="container text-center">
+      <h2 class="display-3 text-danger">Vehicle Tracking Document</h2>
+  
+      <p class="display-4 d-none d-sm-block">Using Python Django</p>
+      
+      <p class="lead">Sign Up to request a vehicle</p>
+  
+    
+      
+      <a href="/staff/staffsignup" class="btn btn-lg btn-danger" style="border-radius: 0%;"><i class="fa fa-user" aria-hidden="true"></i> Sign Up as Customer</a>
+      
+      <br>
+      
+      <br><br>
+<!--    -->
+    </div>  
+  </section>
+  
+  <!-- 
+  <div class="jumbotron" style="margin-top: 0px;margin-bottom: 0px;">
+  
+   
+    
+  </div> -->
+    {% include "vehicle/footer.html" %}
+  
+  
+  </body>
+  
+  </html>
+  

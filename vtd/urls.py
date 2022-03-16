@@ -18,14 +18,15 @@ urlpatterns = [
     path('adminlogin', LoginView.as_view(template_name='vehicle/adminlogin.html'),name='adminlogin'),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
+    path('admin-view-staff/', views.admin_view_staff_view, name='admin-view-staff'),
+
     path('admin-view-vehicles', views.admin_view_vehicles_view, name='admin-view-vehicles'),
     path('update-vehicle/<int:pk>/', views.update_vehicle_view, name='admin-update-vehicles'),
     path('delete-vehicle/<int:pk>/', views.delete_vehicle_view, name='admin-delete-vehicles'),
 
-    path('admin_view_vehicle_holder_view', views.admin_view_vehicle_holder_view, name='admin_view_vehicle_holder_view'),
-    path('admin_view_vehicle_holder_view', views.admin_view_vehicle_holder_view, name='admin_view_vehicle_holder_view'),
-    path('admin_view_approved_vehicle_holder', views.admin_view_approved_vehicle_holder, name='admin_view_approved_vehicle_holder'),
-    path('admin_view_disapproved_vehicle_holder', views.admin_view_diasspproved_vehicle_holder, name='admin_view_diasspproved_vehicle_holder'),
+    path('admin_view_vehicle_holder/', views.admin_view_vehicle_holder_view, name='admin_view_vehicle_holder'),
+    path('admin_view_approved_vehicle_holder', views.admin_view_approved_vehicle_holder, name='approved_vehicle_holder'),
+    path('admin_view_disapproved_vehicle_holder', views.admin_view_diasspproved_vehicle_holder, name='diasspproved_vehicle_holder'),
 
 
 ]

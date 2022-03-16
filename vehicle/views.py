@@ -45,9 +45,9 @@ def admin_dashboard_view(request):
     return render(request, 'vehicle/admin_dashboard.html', context=dict)
 
 @login_required(login_url='adminlogin')
-def adminlogin_view(request):
-    staffs=model.staff.objects.all()
-    return render(request, 'vehicle/admin_view_staffs.html', {'staffs':staffs})
+def admin_view_staff_view(request):
+    staffs=CMODEL.Staff.objects.all()
+    return render(request, 'vehicle/admin-view-staff.html', {'staffs':staffs})
 
 
 @login_required(login_url='adminlogin')

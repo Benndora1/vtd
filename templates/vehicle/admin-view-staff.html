@@ -62,8 +62,8 @@
           <td>{{t.mobile}}</td>
           <td>{{t.address}}</td>
           
-          <td><a class="btn btn-success btn-sm" href="{% url 'update-staff' t.id  %}"><span class="fa fa-edit"></span></a></td>
-          <td><a class="btn btn-danger btn-sm" href="{% url 'delete-staff' t.id  %}"><span class="fa fa-trash"></span></a></td>
+          <td><a class="btn btn-success btn-sm" href="{% url 'update-staffs' t.id  %}"><span class="fa fa-edit"></span></a></td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'delete-staffs' t.id  %}"><span class="fa fa-trash"></span></a></td>
         </tr>
         {% endfor %}
       </table>

@@ -51,7 +51,7 @@ def admin_view_staff_view(request):
 
 
 @login_required(login_url='adminlogin')
-def update_staff_view(request,pk):
+def update_staffs_view(request,pk):
     staffs=CMODEL.Staff.objects.get(id=pk)
     user=CMODEL.User.objects.get(id=staff.user_id)
     userForm=CFORM.StaffUserForm(instance=user)
@@ -71,7 +71,7 @@ def update_staff_view(request,pk):
 
 
 @login_required(login_url='adminlogin')
-def delete_staff_view(request, pk):
+def delete_staffs_view(request, pk):
     staff=CMODEL.Staff.objects.get(id=pk)
     user=CMODEL.User.objects.get(id=staff.user_id)
     user.delete()

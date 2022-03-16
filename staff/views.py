@@ -3,6 +3,13 @@ from . import forms, models
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.db.models import Q
+from datetime import date, timedelta
+from django.contrib.auth.models import Group
+from vehicle import models as CMODEL
+from vehicle import forms as CFORM
+
 
 
 def staffclick_view(request):
@@ -11,7 +18,7 @@ def staffclick_view(request):
     return render(request, 'staff/staffclick.html')
 
 
-def staffsignup_view(request):
+def staff_signup_view(request):
     userForm=forms.StaffUserForm()
     staffForm=forms.StaffForm()
     mydict={'userForm':userForm, 'staffForm':staffForm}
@@ -20,6 +27,8 @@ def staffsignup_view(request):
         staffForm=forms.StaffForm(request.POST)
         if userForm.is_valid() and staffForm.is_valid():
             user=userForm.save()
+            user.set_password(user.password)
+            user.save()
             staff=staffForm.save(commit=False)
             staff.user=user
             staff.save()

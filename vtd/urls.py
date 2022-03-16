@@ -12,7 +12,7 @@ urlpatterns = [
     path('staff/', include('staff.urls')),
     
     path('', views.home_view, name=''),
-    path('logout', LogoutView.as_view(template_name='vehicles/logout.html'), name='logout'),
+    path('logout', LogoutView.as_view(template_name='vehicle/logout.html'), name='logout'),
     path('afterlogin', views.afterlogin_view, name='afterlogin'),
     
     path('adminlogin', LoginView.as_view(template_name='vehicle/adminlogin.html'),name='adminlogin'),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin_view_vehicle_holder/', views.admin_view_vehicle_holder_view, name='admin_view_vehicle_holder'),
     path('admin_view_approved_vehicle_holder/', views.admin_view_approved_vehicle_holder_view, name='admin_view_approved_vehicle_holder'),
     path('admin_view_disapproved_vehicle_holder', views.admin_view_diasspproved_vehicle_holder_view, name='diasspproved_vehicle_holder'),
+    path('admin_view_waiting_vehicle_holder', views.admin_view_waiting_vehicle_holder_view, name='admin_view_waiting_vehicle_holder'),
 
 
 ]

@@ -32,7 +32,7 @@ def staff_signup_view(request):
             staff=staffForm.save(commit=False)
             staff.user=user
             staff.save()
-            my_staff_group=Group.objects.get_or_create(name='staff')
+            my_staff_group = Group.objects.get_or_create(name='staff')
             my_staff_group[0].user_set.add(user)
         return HttpResponseRedirect('stafflogin')
     return render(request, 'staff/staffsignup.html', context=mydict)
@@ -45,11 +45,27 @@ def is_staff(user):
 def staff_dashboard_view(request):
     dict= {
         'staff':model.staff.objects.get(user=request.user)
+        'available_vehicles':models.Vehicle.objects.all().count()
+        'total_vehicle_holders':models.VehicleRecord.objects.all().count(),
     }
  
-    return render(request, 'staff/dashboard.html', context=dict)
+    return render(request, 'staff/staffdashboard.html', context=dict)
 
 def request_vehicle_view(request):
     staff = models.Staff.objects.get(user_id=request.user.id)
     vehicles = CMODEL.vehicles.objects.all()
     return render(request, 'staff/request_vehicle.html', {'staff': staff, 'vehicles': vehicles})
+
+def requested_vehicles_view(request):
+    staff = models.Staff.objects.get(user_id=request.user.id)
+    vehicles = CMODEL.Vehicles.objects.get(id=pk)
+    vehiclerecords = CMODEL.VehicleRecord()
+    vehiclerecords.vehicle = vehicle
+    vehiclerecords.staff = staff
+    vehiclerecords.save()
+    return redirect('history')
+
+def histroy_view(request):
+    staff = models.Staff.objects.get(user_id=request.user.id)
+    vehicle = CMODEL.VehicleRecord.objects.all.filter(staff=staff)
+    return render(request, 'staff/history.html', {'staff': staff, 'vehicles': vehicles})

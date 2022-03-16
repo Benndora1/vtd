@@ -25,8 +25,8 @@ urlpatterns = [
     path('delete-vehicle/<int:pk>/', views.delete_vehicle_view, name='admin-delete-vehicles'),
 
     path('admin_view_vehicle_holder/', views.admin_view_vehicle_holder_view, name='admin_view_vehicle_holder'),
-    path('admin_view_approved_vehicle_holder', views.admin_view_approved_vehicle_holder, name='approved_vehicle_holder'),
-    path('admin_view_disapproved_vehicle_holder', views.admin_view_diasspproved_vehicle_holder, name='diasspproved_vehicle_holder'),
+    path('admin_view_approved_vehicle_holder/', views.admin_view_approved_vehicle_holder_view, name='admin_view_approved_vehicle_holder'),
+    path('admin_view_disapproved_vehicle_holder', views.admin_view_diasspproved_vehicle_holder_view, name='diasspproved_vehicle_holder'),
 
 
 ]

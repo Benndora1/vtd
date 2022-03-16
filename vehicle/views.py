@@ -121,19 +121,19 @@ def delete_vehicle_view(request, pk):
 
 def admin_view_vehicle_holder_view(request):
     vehiclerecords=models.VehicleRecord.objects.all()
-    return render(request, 'vehicle/admin_view_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+    return render(request, 'vehicle/admin_view_vehicle_holder.html', {'vehiclerecords':vehiclerecords})
 
-def admin_view_approved_vehicle_holder(request):
+def admin_view_approved_vehicle_holder_view(request):
     vehiclerecords=models.VehicleRecord.objects.all().filter(status='Approved')
-    return render(request, 'vehicle/admin_view_approved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+    return render(request, 'vehicle/admin_view_approved_vehicle_holder.html', {'vehiclerecords':vehiclerecords})
 
-def admin_view_diasspproved_vehicle_holder(request):
+def admin_view_diasspproved_vehicle_holder_view(request):
     vehiclerecords=models.VehicleRecord.objects.all().filter(status='Disapproved')
-    return render(request, 'vehicle/admin_view_disapproved_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+    return render(request, 'vehicle/admin_view_disapproved_vehicle_holder.html', {'vehiclerecords':vehiclerecords})
 
-def admin_view_waiting_vehicle_holder(request):
+def admin_view_waiting_vehicle_holder_view(request):
     vehiclerecords=models.VehicleRecord.objects.all().filter(status='Pending')
-    return render(request, 'vehicle/admin_view_waiting_vehicle_holder.html', {'vehicle_holders':vehicle_holders})
+    return render(request, 'vehicle/admin_view_waiting_vehicle_holder.html', {'vehiclerecords':vehiclerecords})
 
 def approve_request_view(request, pk):
     vehiclerecords = models.VehicleRecord.objects.get(id=pk)

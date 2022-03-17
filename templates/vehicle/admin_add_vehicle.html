@@ -1,6 +1,7 @@
 {% extends 'vehicle/adminbase.html' %}
 {% load widget_tweaks %}
 {% block content %}
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
@@ -11,6 +12,7 @@
   <style>
        
   a:link {
+
         text-decoration: none;
       }
     
@@ -29,7 +31,15 @@
      <label for="course_name">Vehicle Color</label>
       {% render_field vehicleForm.vehicle_color class="form-control" placeholder="Color" %}
 
-    <!-- <label for="course_name"></label>
+
+      <label for="course_name">Vehicle Number</label>
+      {% render_field vehicleForm.vehicle_number class="form-control" placeholder="Number" %}
+
+      <label for="course_name">Vehicle Image</label>
+      {% render_field vehicleForm.vehicle_image class="form-control" placeholder="Image" %}
+   
+   
+      <!-- <label for="course_name"></label>
       {% render_field policyForm.premium class="form-control" placeholder="70000" %}
 
           <label for="course_name">Tenure</label>

@@ -47,13 +47,13 @@ def customer_dashboard_view(request):
         
         'customer':models.Customer.objects.get(user=request.user),
         'available_vehicles':CMODEL.Vehicle.objects.all().count(),
-        # 'requested_vehicles':CMODEL.VehicleRecord.objects.all().count().filter(customer=models.Customer.objects.get(user_id=request.user_id)).count(),
+        'requested_vehicles':CMODEL.VehicleRecord.objects.all().count(),
     }
  
     return render(request, 'customer/customerdashboard.html', context=dict)
 
 def request_vehicle_view(request):
-    customer = models.customer.objects.get(user_id=request.user_id)
+    customer = models.Customer.objects.get(user=request.user)
     vehicles = CMODEL.Vehicle.objects.all()
 
     return render(request, 'customer/request_vehicle.html', {'customer': customer, 'vehicles': vehicles})
@@ -68,6 +68,6 @@ def requested_vehicles_view(request):
     return redirect('history')
 
 def history_view(request):
-    customer = models.Customer.objects.get(user_id=request.user.id)
-    vehicle = CMODEL.VehicleRecord.objects.all.filter(Customer=Customer)
+    customer = models.Customer.objects.get(user=request.user)
+    vehicle = CMODEL.VehicleRecord.objects.all().filter(customer=customer)
     return render(request, 'customer/history.html', {'customer': customer, 'vehicles': vehicles})

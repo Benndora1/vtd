@@ -69,8 +69,6 @@ def update_customer_view(request,pk):
             return redirect('admin-view-customer')
     return render(request, 'vehicle/admin_update_customer.html', context=mydict)
 
-
-
 @login_required(login_url='adminlogin')
 def delete_customer_view(request, pk):
     customer=CMODEL.Customer.objects.get(id=pk)

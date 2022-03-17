@@ -45,9 +45,9 @@ def is_customer(user):
 def customer_dashboard_view(request):
     dict= {
         
-        'customer':models.Customer.objects.get(user_id=request.user_id),
+        'customer':models.Customer.objects.get(user=request.user),
         'available_vehicles':CMODEL.Vehicle.objects.all().count(),
-        'requested_vehicles':CMODEL.VehicleRecord.objects.all().count().filter(customer=models.Customer.objects.get(user_id=request.user.id)).count(),
+        # 'requested_vehicles':CMODEL.VehicleRecord.objects.all().count().filter(customer=models.Customer.objects.get(user_id=request.user_id)).count(),
     }
  
     return render(request, 'customer/customerdashboard.html', context=dict)

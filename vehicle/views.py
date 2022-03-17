@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from customer import models as CMODEL
 from customer import forms as CFORM
 
-# Create your views here.
 
 def home_view(request):
     if request.user.is_authenticated:
@@ -56,7 +55,7 @@ def update_customer_view(request,pk):
     customer=CMODEL.Customer.objects.get(id=pk)
     user=CMODEL.User.objects.get(id=customer.user_id)
     userForm=CFORM.CustomerUserForm(instance=user)
-    customerForm=CFORM.CustomerForm(request.FILES, instance=Customer)
+    customerForm=CFORM.CustomerForm(request.FILES, instance=customer)
     mydict={'userForm':userForm, 'customerForm':customerForm}
     if request.method=='POST':
         userForm=CFORM.CustomerUserForm(request.POST, instance=user)

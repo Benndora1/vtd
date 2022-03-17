@@ -9,7 +9,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('staff/', include('staff.urls')),
+    path('customer/', include('customer.urls')),
     
     path('', views.home_view, name=''),
     path('logout', LogoutView.as_view(template_name='vehicle/logout.html'), name='logout'),
@@ -18,9 +18,9 @@ urlpatterns = [
     path('adminlogin', LoginView.as_view(template_name='vehicle/adminlogin.html'),name='adminlogin'),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
-    path('admin-view-staff/', views.admin_view_staff_view, name='admin-view-staff'),
-    path('update-staffs/<int:pk>', views.update_staffs_view, name='update-staffs'),
-    path('delete-staffs/<int:pk>', views.delete_staffs_view, name='delete-staffs'),
+    path('admin-view-customer/', views.admin_view_customer_view, name='admin-view-customer'),
+    path('update-customer/<int:pk>', views.update_customer_view, name='update-customer'),
+    path('delete-customer/<int:pk>', views.delete_customer_view, name='delete-customer'),
     
     path('admin-view-vehicles', views.admin_view_vehicles_view, name='admin-view-vehicles'),
     path('update-vehicle/<int:pk>/', views.update_vehicle_view, name='admin-update-vehicles'),

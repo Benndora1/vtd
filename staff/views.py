@@ -44,16 +44,16 @@ def is_staff(user):
 @login_required(login_url='stafflogin')
 def staff_dashboard_view(request):
     dict= {
-        'staff':model.staff.objects.get(user=request.user)
-        'available_vehicles':models.Vehicle.objects.all().count()
-        'total_vehicle_holders':models.VehicleRecord.objects.all().count(),
+        'staff': models.Staff.objects.get(user=request.user),
+        'available_vehicles':CMODEL.Vehicle.objects.all().count(),
+        'total_vehicle_holders':CMODEL.VehicleRecord.objects.all().count(),
     }
  
     return render(request, 'staff/staffdashboard.html', context=dict)
 
 def request_vehicle_view(request):
     staff = models.Staff.objects.get(user_id=request.user.id)
-    vehicles = CMODEL.vehicles.objects.all()
+    vehicles = CMODEL.Vehicle.objects.all()
     return render(request, 'staff/request_vehicle.html', {'staff': staff, 'vehicles': vehicles})
 
 def requested_vehicles_view(request):
@@ -65,7 +65,7 @@ def requested_vehicles_view(request):
     vehiclerecords.save()
     return redirect('history')
 
-def histroy_view(request):
+def history_view(request):
     staff = models.Staff.objects.get(user_id=request.user.id)
     vehicle = CMODEL.VehicleRecord.objects.all.filter(staff=staff)
     return render(request, 'staff/history.html', {'staff': staff, 'vehicles': vehicles})

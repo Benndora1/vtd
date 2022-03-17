@@ -49,18 +49,18 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="mobile">Contact</label>
-          {% render_field staffForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact" autocomplete="off" %}
+          {% render_field customerForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact" autocomplete="off" %}
         </div>
         <div class="form-group col-md-6">
           <label for="address">Address</label>
-          {% render_field staffForm.address|attr:'required:true'  class="form-control" placeholder="Address" autocomplete="off" %}
+          {% render_field customerForm.address|attr:'required:true'  class="form-control" placeholder="Address" autocomplete="off" %}
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="profile_pic">Profile Picture</label>
-          {% render_field staffForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
+          {% render_field customerForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
         </div>
         
       </div>

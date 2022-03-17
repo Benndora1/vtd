@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'staff',
     'vehicle',
+    'customer',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # STATICFILES_DIRS=[
 # STATIC_DIR,
 #  ]
+
+LOGIN_REDIRECT_URL='/afterlogin'

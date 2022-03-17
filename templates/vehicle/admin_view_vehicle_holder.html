@@ -1,4 +1,4 @@
-{% extends 'insurance/adminbase.html' %}
+{% extends 'vehicle/adminbase.html' %}
 {% block content %}
 {%load static%}
 
@@ -27,13 +27,13 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h4 class="text-center">Policy Holder Record</h4>
+      <h4 class="text-center">Vehicle Holder Record</h4>
     </div>
     <table class="table table-hover table-bordered table-striped" id="dev-table">
       <thead class="thead-dark">
         <tr>
         <th>#</th>
-          <th>Policy</th>
+          <th></th>
           <th>Customer</th>
           <th> Applied Date</th>
           <th>Status</th>
@@ -43,7 +43,7 @@
       {% for t in policyrecords %}
       <tr>
         <td> {{ forloop.counter }}</td>
-        <td> {{t.Policy}}</td>
+        <td> {{t.Vehicle}}</td>
         <td> {{t.customer}}</td>
         
         <td>{{t.creation_date}}</td>

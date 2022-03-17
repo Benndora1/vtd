@@ -55,7 +55,7 @@
             <th>Delete</th>
           </tr>
         </thead>
-        {% for t in staffs %}
+        {% for t in customers %}
         <tr>
   
           <td> {{t.get_name}}</td>
@@ -63,8 +63,8 @@
           <td>{{t.mobile}}</td>
           <td>{{t.address}}</td>
           
-          <td><a class="btn btn-success btn-sm" href="{% url 'update-staffs' t.id  %}"><span class="fa fa-edit"></span></a></td>
-          <td><a class="btn btn-danger btn-sm" href="{% url 'delete-staffs' t.id  %}"><span class="fa fa-trash"></span></a></td>
+          <td><a class="btn btn-success btn-sm" href="{% url 'update-customer' t.id  %}"><span class="fa fa-edit"></span></a></td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'delete-customer' t.id  %}"><span class="fa fa-trash"></span></a></td>
         </tr>
         {% endfor %}
       </table>
